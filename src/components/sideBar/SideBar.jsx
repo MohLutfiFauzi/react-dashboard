@@ -1,5 +1,5 @@
 import { AttachMoneyOutlined, ChatBubbleOutlineOutlined, EmailOutlined, EqualizerOutlined, FeedbackOutlined, LineStyle, PersonOutlineOutlined, ReportProblemOutlined, StorefrontOutlined, Timeline, TrendingUp, WorkOutlineOutlined } from '@mui/icons-material'
-import React from 'react'
+import { Link } from 'react-router-dom'
 import "./sidebar.css"
 
 const SideBar = () => {
@@ -9,10 +9,12 @@ const SideBar = () => {
                 <div className="sidebarMenu">
                     <h3 className="sideBarTitle">Dashboard</h3>
                     <ul className="sidebarList">
-                        <li className="sidebarListItem active">
-                            <LineStyle className='sidebarIcon' />
-                            Home
-                        </li>
+                        <Link to="/" className='link'>
+                            <li className="sidebarListItem active">
+                                <LineStyle className='sidebarIcon' />
+                                Home
+                            </li>
+                        </Link>
                         <li className="sidebarListItem">
                             <Timeline className='sidebarIcon' />
                             Analytics
@@ -26,14 +28,18 @@ const SideBar = () => {
                 <div className="sidebarMenu">
                     <h3 className="sideBarTitle">Quick Menu</h3>
                     <ul className="sidebarList">
-                        <li className="sidebarListItem">
-                            <PersonOutlineOutlined className='sidebarIcon' />
-                            Users
-                        </li>
-                        <li className="sidebarListItem">
-                            <StorefrontOutlined className='sidebarIcon' />
-                            Products
-                        </li>
+                        <Link to="/users" className='link'>
+                            <li className="sidebarListItem">
+                                <PersonOutlineOutlined className='sidebarIcon' />
+                                Users
+                            </li>
+                        </Link>
+                        <Link to="/products" className='link'>
+                            <li className="sidebarListItem">
+                                <StorefrontOutlined className='sidebarIcon' />
+                                Products
+                            </li>
+                        </Link>
                         <li className="sidebarListItem">
                             <AttachMoneyOutlined className='sidebarIcon' />
                             Transactions
