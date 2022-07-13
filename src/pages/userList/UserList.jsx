@@ -15,30 +15,36 @@ const UserList = () => {
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
         {
-            field: 'user', headerName: 'User', width: 200, renderCell: (params) => {
+            field: 'image', headerName: 'Image', width: 90, renderCell: (params) => {
                 return (
                     <div className='userListUser'>
                         <img className='userListimg' src={params.row.avatar} alt="" />
-                        {params.row.username}
                     </div>
                 )
             }
         },
-        { field: 'email', headerName: 'Email', width: 200 },
+        { field: 'firstname', headerName: 'firstname', width: 100 },
+        { field: 'lastname', headerName: 'lastname', width: 100 },
+        { field: 'email', headerName: 'Email', width: 160 },
         {
-            field: 'status',
-            headerName: 'Status',
+            field: 'phoneNumber',
+            headerName: 'Phone Number',
             width: 120,
         },
         {
             field: 'transaction',
-            headerName: 'Transaction Volume',
+            headerName: 'Transaction',
             width: 160,
+        },
+        {
+            field: 'gender',
+            headerName: 'Gender',
+            width: 100,
         },
         {
             field: 'action',
             headerName: 'Action',
-            width: 150,
+            width: 100,
             renderCell: (params) => {
                 return (
                     <>
@@ -63,6 +69,9 @@ const UserList = () => {
                 checkboxSelection
                 disableSelectionOnClick
             />
+            <Link to={"/newUser/"} className="userAddContainer">
+                <button className="userAdd">Add Customer</button>
+            </Link>
         </div>
     )
 }

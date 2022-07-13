@@ -1,4 +1,5 @@
-import { Publish, PermIdentity, CalendarToday, PhoneAndroid, MailOutline, LocationSearching } from '@mui/icons-material'
+import { Publish, PermIdentity, PhoneAndroid, MailOutline, LocationSearching } from '@mui/icons-material'
+import ManIcon from '@mui/icons-material/Man'
 import { Link } from 'react-router-dom'
 import './user.css'
 
@@ -6,9 +7,9 @@ const User = () => {
     return (
         <div className='user'>
             <div className="userTitleContainer">
-                <h2 className="userTitle">Edit User</h2>
-                <Link to="/newUser">
-                    <button className="userAddButton">Create</button>
+                <h2 className="userTitle">Edit Customer</h2>
+                <Link to="/users">
+                    <button className="userAddButton">Back</button>
                 </Link>
             </div>
             <div className="userContainer">
@@ -17,18 +18,17 @@ const User = () => {
                         <img src="https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" className="userShowImg" />
                         <div className="userShowTopTitle">
                             <span className="userShowUsername">Justin Backer</span>
-                            <span className="userShowUserTitle">Software Engineer</span>
                         </div>
                     </div>
                     <div className="userShowBottom">
                         <span className="userShowTitle">Account Details</span>
                         <div className="userShowInfo">
                             <PermIdentity className='userShowIcon' />
-                            <span className="userShowInfoTitle">Justin89</span>
+                            <span className="userShowInfoTitle">Justin Doe</span>
                         </div>
                         <div className="userShowInfo">
-                            <CalendarToday className='userShowIcon' />
-                            <span className="userShowInfoTitle">14.03.00</span>
+                            <ManIcon className='userShowIcon' />
+                            <span className="userShowInfoTitle">Male</span>
                         </div>
                         <span className="userShowTitle">Contact Details</span>
                         <div className="userShowInfo">
@@ -50,24 +50,28 @@ const User = () => {
                     <form className="userUpdateForm">
                         <div className="userUpdateLeft">
                             <div className="userUpdateItem">
-                                <label>Username</label>
-                                <input type="text" placeholder='Justin89' className='userUpdateInput' />
+                                <label>Firstname</label>
+                                <input type="text" placeholder='firstname' className='userUpdateInput' required={true} />
                             </div>
                             <div className="userUpdateItem">
-                                <label>Full Name</label>
-                                <input type="text" placeholder='Justin Backer' className='userUpdateInput' />
+                                <label>Lastname</label>
+                                <input type="text" placeholder='lastname' className='userUpdateInput' required={true} />
+                            </div>
+                            <div className="userUpdateItem">
+                                <label>Gender</label>
+                                <input type="text" placeholder='gender' className='userUpdateInput' required={true} />
                             </div>
                             <div className="userUpdateItem">
                                 <label>Email</label>
-                                <input type="text" placeholder='Justin89@gmail.com' className='userUpdateInput' />
+                                <input type="text" placeholder='email' className='userUpdateInput' required={true} />
                             </div>
                             <div className="userUpdateItem">
                                 <label>Phone</label>
-                                <input type="text" placeholder='+62 989 9827 7377' className='userUpdateInput' />
+                                <input type="text" placeholder='phone number' className='userUpdateInput' required={true} />
                             </div>
                             <div className="userUpdateItem">
                                 <label>Address</label>
-                                <input type="text" placeholder='West Java | Indonesian' className='userUpdateInput' />
+                                <input type="text" placeholder='address' className='userUpdateInput' required={true} />
                             </div>
                         </div>
                         <div className="userUpdateRight">

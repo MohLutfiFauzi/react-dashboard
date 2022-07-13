@@ -71,8 +71,11 @@ export const UserRows = [
     avatar:
       "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
+    firstname: "jon",
+    lastname: "doe",
+    phoneNumber: "0895803621717",
+    transaction: "120.000 k",
+    gender: "male",
   },
   {
     id: 2,
@@ -80,80 +83,11 @@ export const UserRows = [
     avatar:
       "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 3,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 4,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 5,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 6,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 7,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 8,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 9,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
-  },
-  {
-    id: 10,
-    username: "Jon Snow",
-    avatar:
-      "https://images.pexels.com/photos/11682017/pexels-photo-11682017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    email: "jon@gmail.com",
-    status: "active",
-    transaction: "$120.00",
+    firstname: "jon",
+    lastname: "doe",
+    phoneNumber: "0895803621717",
+    transaction: "120.000 k",
+    gender: "male",
   },
 ];
 

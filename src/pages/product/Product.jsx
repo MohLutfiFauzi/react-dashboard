@@ -46,7 +46,7 @@ const Product = () => {
                 <form className="productForm">
                     <div className="productFormLeft">
                         <label>Product Name</label>
-                        <input type="text" placeholder="Monstera" />
+                        <input type="text" placeholder="Monstera" required={true} />
                         <label>In Stock</label>
                         <select name="inStock" id="idStock">
                             <option value="yes">Yes</option>
