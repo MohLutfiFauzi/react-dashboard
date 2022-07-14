@@ -14,15 +14,27 @@ const NewProduct = () => {
                     <input type="text" placeholder="Monstera" required={true} />
                 </div>
                 <div className="addProductItem">
-                    <label>Stock</label>
-                    <input type="text" placeholder="123" />
+                    <label>Price</label>
+                    <input type="number" placeholder="123" />
                 </div>
                 <div className="addProductItem">
-                    <label>Active</label>
-                    <select name="active" id="active">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
+                    <label>Type</label>
+                    <input type="text" placeholder="aglonema" />
+                </div>
+                <div className="addProductItem">
+                    <label>Size</label>
+                    <label style={{ fontSize: "14px" }}>
+                        <input type="checkbox" id="small" name="small" value="small" style={{ marginRight: "5px" }} />
+                        small
+                    </label>
+                    <label style={{ fontSize: "14px" }}>
+                        <input type="checkbox" id="medium" name="medium" value="medium" style={{ marginRight: "5px" }} />
+                        medium
+                    </label>
+                    <label style={{ fontSize: "14px" }}>
+                        <input type="checkbox" id="mature" name="mature" value="mature" style={{ marginRight: "5px" }} />
+                        mature
+                    </label>
                 </div>
                 <button className="addProductButton">Create</button>
             </form>

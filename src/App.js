@@ -2,6 +2,9 @@ import SideBar from "./components/sideBar/SideBar";
 import TopBar from "./components/topBar/TopBar";
 import "./app.css";
 import Home from "./pages/home/Home";
+import TransactionsList from "./pages/transactions/TransactionsList";
+import Stock from "./pages/stock/Stock";
+import InsertStock from "./pages/insertStock/InsertStock";
 import UserList from "./pages/userList/UserList";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -25,6 +28,9 @@ function App() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path="/transactionslist" element={<TransactionsList />} />
+          <Route path="/stock" element={<Stock />} />
+          <Route path="/insertStock" element={<InsertStock />} />
         </Routes>
       </div>
     </Router>

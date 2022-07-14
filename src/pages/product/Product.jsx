@@ -9,8 +9,8 @@ const Product = () => {
         <div className='product'>
             <div className="productTitleContainer">
                 <h2 className="productTitle">Product</h2>
-                <Link to="/newProduct">
-                    <button className="productAddButton">Create</button>
+                <Link to="/products">
+                    <button className="productAddButton">Back</button>
                 </Link>
             </div>
             <div className="productTop">
@@ -25,19 +25,11 @@ const Product = () => {
                     <div className="productInfoBottom">
                         <div className="productInfoItem">
                             <span className="productInfoKey">id:</span>
-                            <span className="productInfoValue">123</span>
+                            <span className="productInfoValue">1</span>
                         </div>
                         <div className="productInfoItem">
-                            <span className="productInfoKey">sales:</span>
-                            <span className="productInfoValue">4322</span>
-                        </div>
-                        <div className="productInfoItem">
-                            <span className="productInfoKey">active:</span>
-                            <span className="productInfoValue">yes</span>
-                        </div>
-                        <div className="productInfoItem">
-                            <span className="productInfoKey">in stock:</span>
-                            <span className="productInfoValue">no</span>
+                            <span className="productInfoKey">Stock:</span>
+                            <span className="productInfoValue">300</span>
                         </div>
                     </div>
                 </div>
@@ -45,18 +37,25 @@ const Product = () => {
             <div className="productBottom">
                 <form className="productForm">
                     <div className="productFormLeft">
-                        <label>Product Name</label>
-                        <input type="text" placeholder="Monstera" required={true} />
-                        <label>In Stock</label>
-                        <select name="inStock" id="idStock">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                        <label>Active</label>
-                        <select name="active" id="active">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
+                        <label>Product</label>
+                        <input type="text" placeholder="name of product" required={true} />
+                        <label>Price</label>
+                        <input type="number" placeholder="price" required={true} />
+                        <label>Type</label>
+                        <input type="text" placeholder="type of product" required={true} />
+                        <label>Size</label>
+                        <label style={{ fontSize: "14px" }}>
+                            <input type="checkbox" id="small" name="small" value="small" style={{ marginRight: "5px" }} />
+                            small
+                        </label>
+                        <label style={{ fontSize: "14px" }}>
+                            <input type="checkbox" id="medium" name="medium" value="medium" style={{ marginRight: "5px" }} />
+                            medium
+                        </label>
+                        <label style={{ fontSize: "14px" }}>
+                            <input type="checkbox" id="mature" name="mature" value="mature" style={{ marginRight: "5px" }} />
+                            mature
+                        </label>
                     </div>
                     <div className="productFormRight">
                         <div className="productUpload">

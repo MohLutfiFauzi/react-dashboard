@@ -25,6 +25,23 @@
   margin-right: 10px;
 }
 
+.productAddContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.productAdd {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 20px;
+  background-color: rgb(55, 0, 255);
+  color: white;
+  cursor: pointer;
+  font-size: large;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .productListDelete {
   color: rgb(243, 59, 59);
   cursor: pointer;

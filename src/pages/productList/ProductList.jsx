@@ -9,12 +9,14 @@ const ProductList = () => {
     const [data, setData] = useState(ProductRows);
 
     const handleDelete = (id) => {
-        setData(data.filter(item => item.id !== id));
+        if (window.confirm("are you sure want to delete this ?")) {
+            setData(data.filter(item => item.id !== id));
+        }
     }
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: 'id', headerName: 'Id Product', width: 90 },
         {
-            field: 'product', headerName: 'Product', width: 200, renderCell: (params) => {
+            field: 'product', headerName: 'Product', width: 220, renderCell: (params) => {
                 return (
                     <div className='productListItem'>
                         <img className='productListImg' src={params.row.img} alt="" />
@@ -23,11 +25,11 @@ const ProductList = () => {
                 )
             }
         },
-        { field: 'stock', headerName: 'Stock', width: 200 },
+        { field: 'type', headerName: 'Type Of Products', width: 200 },
         {
-            field: 'status',
-            headerName: 'Status',
-            width: 120,
+            field: 'size',
+            headerName: 'Size',
+            width: 200,
         },
         {
             field: 'price',
@@ -60,6 +62,9 @@ const ProductList = () => {
                 checkboxSelection
                 disableSelectionOnClick
             />
+            <Link to={"/newProduct"} className="productAddContainer">
+                <button className="productAdd">Add Product</button>
+            </Link>
         </div>
     )
 }

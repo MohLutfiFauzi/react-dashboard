@@ -9,7 +9,9 @@ const UserList = () => {
     const [data, setData] = useState(UserRows);
 
     const handleDelete = (id) => {
-        setData(data.filter(item => item.id !== id));
+        if (window.confirm("are you sure want to delete this ?")) {
+            setData(data.filter(item => item.id !== id));
+        }
     }
 
     const columns = [

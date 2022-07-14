@@ -96,80 +96,54 @@ export const ProductRows = [
     id: 1,
     name: "Monstera",
     img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
+    type: "Aglonema",
+    size: "Small",
+    price: "150.000",
   },
   {
     id: 2,
     name: "Monstera",
     img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
+    type: "Aglonema",
+    size: "Small",
+    price: "150.000",
+  },
+];
+
+export const TransactionRows = [
+  {
+    id: 1,
+    product: "Monstera",
+    count: 2,
+    status: "Panding",
+    buyer: "lutfi",
+    amount: "150.000",
+    date: "14-03-2022"
   },
   {
-    id: 3,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    id: 2,
+    product: "aglonema,begonia",
+    count: 4,
+    status: "Aproved",
+    buyer: "fauzi",
+    amount: "250.000",
+    date: "10-03-2022"
+  },
+];
+
+export const StockRows = [
+  {
+    id: 1,
+    codeProduct: "213kdwe",
+    name: "aglonema",
     stock: 123,
-    status: "active",
-    price: "$321.00",
+    date: "14-03-2022"
   },
   {
-    id: 4,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+    id: 2,
+    codeProduct: "213kdwe",
+    name: "begonia",
     stock: 123,
-    status: "active",
-    price: "$321.00",
-  },
-  {
-    id: 5,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
-  },
-  {
-    id: 6,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
-  },
-  {
-    id: 7,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
-  },
-  {
-    id: 8,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
-  },
-  {
-    id: 9,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
-  },
-  {
-    id: 10,
-    name: "Monstera",
-    img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    stock: 123,
-    status: "active",
-    price: "$321.00",
+    date: "14-03-2022"
   },
 ];
