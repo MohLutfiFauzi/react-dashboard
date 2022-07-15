@@ -147,3 +147,20 @@ export const StockRows = [
     date: "14-03-2022"
   },
 ];
+
+export const InsertStockRows = [
+  {
+    id: 1,
+    codeProduct: "213kdwe",
+    name: "aglonema",
+    stock: 123,
+    date: "14-03-2022"
+  },
+  {
+    id: 2,
+    codeProduct: "213kdwe",
+    name: "begonia",
+    stock: 123,
+    date: "14-03-2022"
+  },
+];

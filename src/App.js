@@ -13,6 +13,7 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import EditTransactions from "./pages/transactions/EditTransactions";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/transactionslist" element={<TransactionsList />} />
           <Route path="/stock" element={<Stock />} />
           <Route path="/insertStock" element={<InsertStock />} />
+          <Route path="/transaction/:transactionId" element={<EditTransactions />} />
         </Routes>
       </div>
     </Router>
