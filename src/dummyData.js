@@ -136,6 +136,7 @@ export const StockRows = [
     id: 1,
     codeProduct: "213kdwe",
     name: "aglonema",
+    suplier: "fauzi",
     stock: 123,
     date: "14-03-2022"
   },
@@ -143,6 +144,7 @@ export const StockRows = [
     id: 2,
     codeProduct: "213kdwe",
     name: "begonia",
+    suplier: "fauzi",
     stock: 123,
     date: "14-03-2022"
   },
@@ -154,13 +156,15 @@ export const InsertStockRows = [
     codeProduct: "213kdwe",
     name: "aglonema",
     stock: 123,
-    date: "14-03-2022"
+    suplier: "lutfi",
+    date: "14-03-2022",
   },
   {
     id: 2,
     codeProduct: "213kdwe",
     name: "begonia",
     stock: 123,
+    suplier: "fauzi",
     date: "14-03-2022"
   },
 ];

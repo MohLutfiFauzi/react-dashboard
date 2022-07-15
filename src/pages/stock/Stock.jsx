@@ -14,6 +14,7 @@ const Stock = () => {
         { field: 'codeProduct', headerName: 'codeProduct', width: 200 },
         { field: 'name', headerName: 'Name', width: 100 },
         { field: 'stock', headerName: 'Stock', width: 100 },
+        { field: 'suplier', headerName: 'Suplier', width: 100 },
         { field: 'date', headerName: 'Date', width: 160, },
     ];
     return (

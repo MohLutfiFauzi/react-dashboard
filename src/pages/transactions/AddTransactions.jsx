@@ -60,16 +60,17 @@ const TextArea = styled.textarea`
     border: none;
     padding: 5px;
     border-bottom: 1px solid gray;
+    width: 400px;
 `
 
 const Button = styled.button`
     border: none;
-  padding: 5px;
-  border-radius: 5px;
-  background-color: darkblue;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: darkblue;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
 `
 
 const StyleBackButton = {
@@ -83,11 +84,11 @@ const StyleBackButton = {
     cursor: "pointer"
 }
 
-const EditTransactions = () => {
+const AddTransactions = () => {
     return (
         <Container>
             <TitleContainer>
-                <h2>Edit Transaction</h2>
+                <h2>Add Transaction</h2>
                 <Link to="/transactionslist">
                     <button style={StyleBackButton}>Back</button>
                 </Link>
@@ -95,20 +96,17 @@ const EditTransactions = () => {
             <ContainerFormEdit>
                 <FormEdit>
                     <FormLeft>
-                        <Label>ID Transaction</Label>
-                        <Input placeholder='Id Transaction' disabled={true} />
-                        <Label>ID Customer</Label>
-                        <Input placeholder='Id Customer' disabled={true} />
-                        <Label>Phone Number</Label>
-                        <Input placeholder='Phone Number' disabled={true} />
                         <Label>Buyer</Label>
-                        <Input placeholder='Buyer' disabled={true} />
-                        <Label>Date</Label>
-                        <Input placeholder='14-03-2022' disabled={true} />
-                    </FormLeft>
-                    <FormRight>
+                        <Input placeholder='Buyer' />
+                        <Label>Purchase Status</Label>
+                        <Select name="purchase" id="purchase">
+                            <option value="offline">Offline</option>
+                            <option value="online">Online</option>
+                        </Select>
                         <Label>Product</Label>
                         <TextArea placeholder='aglonema, amazon'></TextArea>
+                    </FormLeft>
+                    <FormRight>
                         <Label>Status</Label>
                         <Select name="status" id="status">
                             <option value="panding">Panding</option>
@@ -121,7 +119,7 @@ const EditTransactions = () => {
                         <Input placeholder='Count' type="number" />
                         <Label>Size</Label>
                         <TextArea placeholder='aglonema: small, amazon: medium'></TextArea>
-                        <Button className="productButton">Update</Button>
+                        <Button className="productButton">Add Transaction</Button>
                     </FormRight>
                 </FormEdit>
             </ContainerFormEdit>
@@ -129,4 +127,4 @@ const EditTransactions = () => {
     )
 }
 
-export default EditTransactions
+export default AddTransactions

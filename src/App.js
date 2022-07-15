@@ -14,6 +14,9 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import EditTransactions from "./pages/transactions/EditTransactions";
+import EditInsertStock from "./pages/insertStock/EditInsertStock";
+import AddInsertStock from "./pages/insertStock/AddInsertStock";
+import AddTransactions from "./pages/transactions/AddTransactions";
 
 function App() {
   return (
@@ -30,9 +33,12 @@ function App() {
           <Route path="/product/:productId" element={<Product />} />
           <Route path="/newproduct" element={<NewProduct />} />
           <Route path="/transactionslist" element={<TransactionsList />} />
+          <Route path="/transaction/:transactionId" element={<EditTransactions />} />
+          <Route path="/newTransaction" element={<AddTransactions />} />
           <Route path="/stock" element={<Stock />} />
           <Route path="/insertStock" element={<InsertStock />} />
-          <Route path="/transaction/:transactionId" element={<EditTransactions />} />
+          <Route path="/insertStock/:insertStockId" element={<EditInsertStock />} />
+          <Route path="/newStock" element={<AddInsertStock />} />
         </Routes>
       </div>
     </Router>

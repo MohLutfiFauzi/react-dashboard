@@ -55,13 +55,6 @@ const Select = styled.select`
     margin-bottom: 10px;
 `
 
-const TextArea = styled.textarea`
-    margin-bottom: 10px;
-    border: none;
-    padding: 5px;
-    border-bottom: 1px solid gray;
-`
-
 const Button = styled.button`
     border: none;
   padding: 5px;
@@ -83,45 +76,39 @@ const StyleBackButton = {
     cursor: "pointer"
 }
 
-const EditTransactions = () => {
+const AddInsertStock = () => {
     return (
         <Container>
             <TitleContainer>
-                <h2>Edit Transaction</h2>
-                <Link to="/transactionslist">
+                <h2>Add Stock</h2>
+                <Link to="/insertstock">
                     <button style={StyleBackButton}>Back</button>
                 </Link>
             </TitleContainer>
             <ContainerFormEdit>
                 <FormEdit>
                     <FormLeft>
-                        <Label>ID Transaction</Label>
+                        <Label>ID Insert Product</Label>
                         <Input placeholder='Id Transaction' disabled={true} />
-                        <Label>ID Customer</Label>
-                        <Input placeholder='Id Customer' disabled={true} />
-                        <Label>Phone Number</Label>
-                        <Input placeholder='Phone Number' disabled={true} />
-                        <Label>Buyer</Label>
-                        <Input placeholder='Buyer' disabled={true} />
+                        <Label>ID Product</Label>
+                        <Input placeholder='Id Product' disabled={true} />
                         <Label>Date</Label>
                         <Input placeholder='14-03-2022' disabled={true} />
                     </FormLeft>
                     <FormRight>
-                        <Label>Product</Label>
-                        <TextArea placeholder='aglonema, amazon'></TextArea>
-                        <Label>Status</Label>
+                        <Label>Decorative Plants</Label>
                         <Select name="status" id="status">
-                            <option value="panding">Panding</option>
-                            <option value="panding">Aproved</option>
-                            <option value="panding">Diclined</option>
+                            <option value="aglonema">aglonema</option>
+                            <option value="begonia">begonia</option>
                         </Select>
-                        <Label>Amount</Label>
-                        <Input placeholder='Amount' type="number" />
-                        <Label>Count</Label>
-                        <Input placeholder='Count' type="number" />
-                        <Label>Size</Label>
-                        <TextArea placeholder='aglonema: small, amazon: medium'></TextArea>
-                        <Button className="productButton">Update</Button>
+                        <Label>Suplier</Label>
+                        <Select name="suplier" id="suplier">
+                            <option value="maman">maman</option>
+                            <option value="ujang">ujang</option>
+                        </Select>
+                        <Label>Stock</Label>
+                        <Input placeholder='Stock' type="number" />
+                        <Button className="productButton">Add Stock</Button>
                     </FormRight>
                 </FormEdit>
             </ContainerFormEdit>
@@ -129,4 +116,4 @@ const EditTransactions = () => {
     )
 }
 
-export default EditTransactions
+export default AddInsertStock

@@ -48,9 +48,10 @@ const InsertStock = () => {
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'codeProduct', headerName: 'Code Product', width: 200 },
+        { field: 'codeProduct', headerName: 'Id Product', width: 200 },
         { field: 'name', headerName: 'Name', width: 100 },
         { field: 'stock', headerName: 'Stock', width: 100 },
+        { field: 'suplier', headerName: 'Suplier', width: 100 },
         { field: 'date', headerName: 'Date', width: 160, },
         {
             field: 'action',
@@ -59,7 +60,7 @@ const InsertStock = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/transaction/" + params.row.id}>
+                        <Link to={"/insertStock/" + params.row.id}>
                             <button style={StyleEditButton}>Edit</button>
                         </Link>
                         <DeleteOutlined style={StyleDeleteButton} onClick={() => handleDelete(params.row.id)} />
@@ -78,7 +79,7 @@ const InsertStock = () => {
                 checkboxSelection
                 disableSelectionOnClick
             />
-            <Link to={"/newStock/"}>
+            <Link to={"/newStock/"} style={{ display: "flex", justifyContent: "flex-end" }}>
                 <button style={StyleButtonAdd}>Add Stock</button>
             </Link>
         </Container>

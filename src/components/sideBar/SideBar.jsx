@@ -38,16 +38,16 @@ const SideBar = () => {
                                 Transactions
                             </li>
                         </Link>
-                        <Link to="/stock" className='link'>
-                            <li className={splitLocation[1] === "stock" ? "sidebarListItem active" : "sidebarListItem"}>
-                                <WorkOutlineOutlined className='sidebarIcon' />
-                                Stock
-                            </li>
-                        </Link>
                         <Link to="/insertstock" className='link'>
                             <li className={splitLocation[1] === "insertstock" ? "sidebarListItem active" : "sidebarListItem"}>
                                 <EqualizerOutlined className='sidebarIcon' />
                                 Insert Stock
+                            </li>
+                        </Link>
+                        <Link to="/stock" className='link'>
+                            <li className={splitLocation[1] === "stock" ? "sidebarListItem active" : "sidebarListItem"}>
+                                <WorkOutlineOutlined className='sidebarIcon' />
+                                Stock
                             </li>
                         </Link>
                     </ul>
