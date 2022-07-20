@@ -26,7 +26,7 @@ const WidgetLg = () => {
                         $122.00
                     </td>
                     <td className="widgetLgStatus">
-                        <Button type="Approved" />
+                        <Button type="Delivered" />
                     </td>
                 </tr>
                 <tr className="widgetLgTr">

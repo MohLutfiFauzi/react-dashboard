@@ -98,6 +98,7 @@ export const ProductRows = [
     img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     type: "Aglonema",
     size: "Small",
+    weight: 300,
     price: "150.000",
   },
   {
@@ -106,6 +107,7 @@ export const ProductRows = [
     img: "https://images.unsplash.com/photo-1632312527047-61fc22faed62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fG1vbnN0ZXJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     type: "Aglonema",
     size: "Small",
+    weight: 300,
     price: "150.000",
   },
 ];

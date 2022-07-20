@@ -29,17 +29,22 @@ const ProductList = () => {
         {
             field: 'size',
             headerName: 'Size',
-            width: 200,
+            width: 150,
+        },
+        {
+            field: 'weight',
+            headerName: 'Weight (gram)',
+            width: 150,
         },
         {
             field: 'price',
             headerName: 'Price',
-            width: 160,
+            width: 100,
         },
         {
             field: 'action',
             headerName: 'Action',
-            width: 150,
+            width: 100,
             renderCell: (params) => {
                 return (
                     <>
