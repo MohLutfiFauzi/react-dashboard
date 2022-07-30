@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProducts, addOrder } from '../../redux/apiCalls'
 
 const Container = styled.div`
     flex: 4;
@@ -85,6 +87,36 @@ const StyleBackButton = {
 }
 
 const AddTransactions = () => {
+    const [inputs, setInputs] = useState({});
+    const [product, setProduct] = useState({});
+    const [status, setStatus] = useState('');
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const products = useSelector((state) => state.product.products);
+
+    useEffect(() => {
+        dispatch(getProducts);
+    }, [dispatch]);
+
+    const handleInput = (e) => {
+        setInputs(prev => {
+            return { ...prev, [e.target.name]: e.target.value }
+        })
+    }
+
+    const handleProduct = (e) => {
+        setProduct(prev => {
+            return { ...prev, [e.target.name]: e.target.value }
+        })
+    }
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        const order = { ...inputs, status: status, products: [product] };
+        addOrder(order, dispatch);
+        navigate("/transactionslist", alert("Success Add Orders"));
+    }
+
     return (
         <Container>
             <TitleContainer>
@@ -97,29 +129,28 @@ const AddTransactions = () => {
                 <FormEdit>
                     <FormLeft>
                         <Label>Buyer</Label>
-                        <Input placeholder='Buyer' />
-                        <Label>Purchase Status</Label>
-                        <Select name="purchase" id="purchase">
-                            <option value="offline">Offline</option>
-                            <option value="online">Online</option>
-                        </Select>
+                        <Input name='userId' placeholder='Buyer' onChange={handleInput} />
                         <Label>Product</Label>
-                        <TextArea placeholder='aglonema, amazon'></TextArea>
+                        <Select name="product" id="product" onChange={handleProduct}>
+                            {products.map((product) => {
+                                return <option value={product._id}>{product.title}</option>
+                            })}
+                        </Select>
+                        <Label>Count</Label>
+                        <Input name='quantity' placeholder={2} type='number' onChange={handleProduct} />
                     </FormLeft>
                     <FormRight>
                         <Label>Status</Label>
-                        <Select name="status" id="status">
-                            <option value="panding">Panding</option>
-                            <option value="panding">Aproved</option>
-                            <option value="panding">Diclined</option>
+                        <Select name="status" id="status" value={status} onChange={e => setStatus(e.target.value)}>
+                            <option value="pending">Pending</option>
+                            <option value="aproved">Aproved</option>
+                            <option value="diclined">Diclined</option>
                         </Select>
                         <Label>Amount</Label>
-                        <Input placeholder='Amount' type="number" />
-                        <Label>Count</Label>
-                        <Input placeholder='Count' type="number" />
-                        <Label>Size</Label>
-                        <TextArea placeholder='aglonema: small, amazon: medium'></TextArea>
-                        <Button className="productButton">Add Transaction</Button>
+                        <Input name='amount' placeholder='Amount' type="number" onChange={handleInput} />
+                        <Label>Address</Label>
+                        <TextArea name='address' placeholder='Address' onChange={handleInput}></TextArea>
+                        <Button onClick={handleClick} className="productButton">Add Transaction</Button>
                     </FormRight>
                 </FormEdit>
             </ContainerFormEdit>

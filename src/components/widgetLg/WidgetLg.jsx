@@ -1,6 +1,22 @@
 import "./widgetLg.css"
+import { useState, useEffect } from "react"
+import axios from 'axios';
 
 const WidgetLg = () => {
+    const [order, setOrders] = useState([]);
+
+    useEffect(() => {
+        const makeRequest = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/api/v1/orders?new=true");
+                setOrders(res.data)
+            } catch (e) {
+                console.log(e.message)
+            }
+        };
+        makeRequest();
+    }, []);
+
     const Button = ({ type }) => {
         return <button className={"widgetLgButton " + type}>{type}</button>
     }
@@ -14,66 +30,22 @@ const WidgetLg = () => {
                     <th className="widgetLgTh">Amount</th>
                     <th className="widgetLgTh">Status</th>
                 </tr>
-                <tr className="widgetLgTr">
-                    <td className="widgetLgUser">
-                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="widgetLgUserImage" />
-                        <span className="widgetLgName">Kevin Heart</span>
-                    </td>
-                    <td className="widgetLgDate">
-                        2 Jun 2022
-                    </td>
-                    <td className="widgetLgAmount">
-                        $122.00
-                    </td>
-                    <td className="widgetLgStatus">
-                        <Button type="Delivered" />
-                    </td>
-                </tr>
-                <tr className="widgetLgTr">
-                    <td className="widgetLgUser">
-                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="widgetLgUserImage" />
-                        <span className="widgetLgName">Kevin Heart</span>
-                    </td>
-                    <td className="widgetLgDate">
-                        2 Jun 2022
-                    </td>
-                    <td className="widgetLgAmount">
-                        $122.00
-                    </td>
-                    <td className="widgetLgStatus">
-                        <Button type="Declined" />
-                    </td>
-                </tr>
-                <tr className="widgetLgTr">
-                    <td className="widgetLgUser">
-                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="widgetLgUserImage" />
-                        <span className="widgetLgName">Kevin Heart</span>
-                    </td>
-                    <td className="widgetLgDate">
-                        2 Jun 2022
-                    </td>
-                    <td className="widgetLgAmount">
-                        $122.00
-                    </td>
-                    <td className="widgetLgStatus">
-                        <Button type="Panding" />
-                    </td>
-                </tr>
-                <tr className="widgetLgTr">
-                    <td className="widgetLgUser">
-                        <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="widgetLgUserImage" />
-                        <span className="widgetLgName">Kevin Heart</span>
-                    </td>
-                    <td className="widgetLgDate">
-                        2 Jun 2022
-                    </td>
-                    <td className="widgetLgAmount">
-                        $122.00
-                    </td>
-                    <td className="widgetLgStatus">
-                        <Button type="Panding" />
-                    </td>
-                </tr>
+                {order.map((order) => {
+                    return <tr key={order._id} className="widgetLgTr">
+                        <td className="widgetLgUser">
+                            <span className="widgetLgName">{order._id}</span>
+                        </td>
+                        <td className="widgetLgDate">
+                            {order.createdAt}
+                        </td>
+                        <td className="widgetLgAmount">
+                            Rp {order.amount}
+                        </td>
+                        <td className="widgetLgStatus">
+                            <Button type={order.status} />
+                        </td>
+                    </tr>
+                })}
             </table>
         </div>
     )

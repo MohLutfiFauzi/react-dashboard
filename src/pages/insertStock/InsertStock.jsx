@@ -5,9 +5,13 @@ import { DeleteOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useState } from 'react'
 import { InsertStockRows } from '../../dummyData'
+import { getProducts } from '../../redux/apiCalls';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Container = styled.div`
     flex: 4;
+    height: 480px;
 `
 
 const StyleButtonAdd = {
@@ -38,6 +42,13 @@ const StyleEditButton = {
 }
 
 const InsertStock = () => {
+    const products = useSelector((state) => state.product.products);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProducts);
+    }, [dispatch]);
+
     const [data, setData] = useState(InsertStockRows);
 
     const handleDelete = (id) => {
@@ -47,12 +58,29 @@ const InsertStock = () => {
     }
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'codeProduct', headerName: 'Id Product', width: 200 },
-        { field: 'name', headerName: 'Name', width: 100 },
-        { field: 'stock', headerName: 'Stock', width: 100 },
-        { field: 'suplier', headerName: 'Suplier', width: 100 },
-        { field: 'date', headerName: 'Date', width: 160, },
+        { field: '_id', headerName: 'ID', width: 220 },
+        { field: 'title', headerName: 'Id Product', width: 200 },
+        { field: 'createdAt', headerName: 'Date', width: 100 },
+        {
+            field: 'stock', headerName: 'Stock', width: 100, renderCell: (params) => {
+                return params.row.stock[params.row.stock.length - 1].stockQuantity;
+            },
+        },
+        {
+            field: 'suplier', headerName: 'Suplier', width: 100, renderCell: (params) => {
+                return params.row.stock[params.row.stock.length - 1].suplier;
+            },
+        },
+        {
+            field: 'numberPhone', headerName: 'Number Phone', width: 120, renderCell: (params) => {
+                return params.row.stock[params.row.stock.length - 1].numberPhone;
+            },
+        },
+        {
+            field: 'idStock', headerName: 'Id Stock', width: 200, renderCell: (params) => {
+                return params.row.stock[params.row.stock.length - 1]._id;
+            },
+        },
         {
             field: 'action',
             headerName: 'Action',
@@ -72,10 +100,11 @@ const InsertStock = () => {
     return (
         <Container>
             <DataGrid
-                rows={data}
+                rows={products}
                 columns={columns}
-                pageSize={10}
+                pageSize={7}
                 rowsPerPageOptions={[5]}
+                getRowId={row => row._id}
                 checkboxSelection
                 disableSelectionOnClick
             />

@@ -7,7 +7,7 @@ import Stock from "./pages/stock/Stock";
 import InsertStock from "./pages/insertStock/InsertStock";
 import UserList from "./pages/userList/UserList";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
@@ -17,15 +17,25 @@ import EditTransactions from "./pages/transactions/EditTransactions";
 import EditInsertStock from "./pages/insertStock/EditInsertStock";
 import AddInsertStock from "./pages/insertStock/AddInsertStock";
 import AddTransactions from "./pages/transactions/AddTransactions";
+import Login from "./pages/login/Login";
+
+const Layout = () => (
+  <>
+    <TopBar />
+    <div className="container">
+      <SideBar />
+      <Outlet />
+    </div>
+  </>
+);
 
 function App() {
   return (
     <Router>
-      <TopBar />
-      <div className="container">
-        <SideBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route element={<Layout />}>
+          <Route path="/dashboard" element={<Home />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/user/:userId" element={<User />} />
           <Route path="/newUser" element={<NewUser />} />
@@ -39,9 +49,9 @@ function App() {
           <Route path="/insertStock" element={<InsertStock />} />
           <Route path="/insertStock/:insertStockId" element={<EditInsertStock />} />
           <Route path="/newStock" element={<AddInsertStock />} />
-        </Routes>
-      </div>
-    </Router>
+        </Route>
+      </Routes>
+    </Router >
   );
 }
 

@@ -14,8 +14,8 @@ const SideBar = () => {
                 <div className="sidebarMenu">
                     <h3 className="sideBarTitle">Dashboard</h3>
                     <ul className="sidebarList">
-                        <Link to="/" className='link'>
-                            <li className={splitLocation[1] === "" ? "sidebarListItem active" : "sidebarListItem"}>
+                        <Link to="/dashboard" className='link'>
+                            <li className={splitLocation[1] === "dashboard" ? "sidebarListItem active" : "sidebarListItem"}>
                                 <LineStyle className='sidebarIcon' />
                                 Home
                             </li>

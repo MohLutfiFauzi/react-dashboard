@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutlined } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { useState } from 'react'
-import { TransactionRows } from '../../dummyData'
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrders, deleteOrder } from '../../redux/apiCalls';
 
 const Container = styled.div`
     flex: 4;
+    height: 480px;
 `
 
 const StyleButtonAdd = {
@@ -38,22 +39,26 @@ const StyleEditButton = {
 }
 
 const TransactionsList = () => {
-    const [data, setData] = useState(TransactionRows);
+    const orders = useSelector((state) => state.order.orders);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getOrders);
+    }, [dispatch]);
 
     const handleDelete = (id) => {
         if (window.confirm("are you sure want to delete this ?")) {
-            setData(data.filter(item => item.id !== id));
+            deleteOrder(id, dispatch);
         }
     }
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
-        { field: 'product', headerName: 'Product', width: 200 },
-        { field: 'count', headerName: 'Count', width: 100 },
+        { field: '_id', headerName: 'ID', width: 200 },
+        { field: 'userId', headerName: 'User Id', width: 200, },
+        { field: 'amount', headerName: 'Amount', width: 100, },
+        { field: 'address', headerName: 'Address', width: 160 },
         { field: 'status', headerName: 'Status', width: 100 },
-        { field: 'buyer', headerName: 'Buyer', width: 120, },
-        { field: 'amount', headerName: 'Amount', width: 150, },
-        { field: 'date', headerName: 'Date', width: 160, },
+        { field: 'createdAt', headerName: 'Date', width: 160, },
         {
             field: 'action',
             headerName: 'Action',
@@ -64,7 +69,7 @@ const TransactionsList = () => {
                         <Link to={"/transaction/" + params.row.id}>
                             <button style={StyleEditButton}>Edit</button>
                         </Link>
-                        <DeleteOutlined style={StyleDeleteButton} onClick={() => handleDelete(params.row.id)} />
+                        <DeleteOutlined style={StyleDeleteButton} onClick={() => handleDelete(params.row._id)} />
                     </>
                 )
             }
@@ -73,10 +78,11 @@ const TransactionsList = () => {
     return (
         <Container>
             <DataGrid
-                rows={data}
+                rows={orders}
                 columns={columns}
                 pageSize={10}
-                rowsPerPageOptions={[5]}
+                getRowId={row => row._id}
+                rowsPerPageOptions={[7]}
                 checkboxSelection
                 disableSelectionOnClick
             />
