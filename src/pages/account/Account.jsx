@@ -112,7 +112,7 @@ const Account = () => {
     return (
         <div className='user'>
             <div className="userTitleContainer">
-                <h2 className="userTitle">Edit Customer</h2>
+                <h2 className="userTitle">Account Admin</h2>
                 <Link to="/users">
                     <button className="userAddButton">Back</button>
                 </Link>

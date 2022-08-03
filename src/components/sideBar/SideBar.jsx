@@ -48,7 +48,7 @@ const SideBar = () => {
                         <Link to="/users" className='link'>
                             <li className={splitLocation[1] === "users" ? "sidebarListItem active" : "sidebarListItem"}>
                                 <PersonOutlineOutlined className='sidebarIcon' />
-                                Customers
+                                Users
                             </li>
                         </Link>
                         <Link to="/products" className='link'>

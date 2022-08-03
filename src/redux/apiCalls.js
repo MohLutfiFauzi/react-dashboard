@@ -175,11 +175,11 @@ export const deleteProduct = async (id, dispatch) => {
     }
 };
 
-export const updateProduct = async (id, product, dispatch) => {
+export const updateProduct = async (dispatch, product) => {
     dispatch(updateProductStart());
     try {
-        // update
-        dispatch(updateProductSuccess({ id, product }));
+        const res = await publicRequest.put(`/products/${product._id}`, product);
+        dispatch(updateProductSuccess(res.data));
     } catch (err) {
         dispatch(updateProductFailure());
     }
