@@ -21,6 +21,12 @@ const userSlice = createSlice({
             state.error = true;
         },
 
+        // Logout
+
+        logoutSuccess: (state) => {
+            state.currentUser = null;
+        },
+
         // GET ALL USER
 
         getUserStart: (state) => {
@@ -63,12 +69,16 @@ const userSlice = createSlice({
         updateUserSuccess: (state, action) => {
             state.isFetching = false;
             state.users[
-                state.users.findIndex((item) => item._id === action.payload.id)
-            ] = action.payload.user;
+                state.users.findIndex((item) => item._id === action.payload._id)
+            ] = action.payload;
         },
         updateUserFailure: (state) => {
             state.isFetching = false;
             state.error = true;
+        },
+        updateCurrentUserSuccess: (state, action) => {
+            state.isFetching = false;
+            state.currentUser = action.payload;
         },
 
         //ADD
@@ -88,5 +98,5 @@ const userSlice = createSlice({
     },
 });
 
-export const { updateUserStart, updateUserSuccess, updateUserFailure, addUserStart, addUserSuccess, addUserFailure, loginStart, loginSuccess, loginFailure, getUserStart, getUserSuccess, getUserFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure } = userSlice.actions;
+export const { updateCurrentUserSuccess, logoutSuccess, updateUserStart, updateUserSuccess, updateUserFailure, addUserStart, addUserSuccess, addUserFailure, loginStart, loginSuccess, loginFailure, getUserStart, getUserSuccess, getUserFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,21 +1,20 @@
 import { Publish, PhoneAndroid, MailOutline, LocationSearching, LocationCity, LocationOff, Timelapse, AdminPanelSettingsRounded } from '@mui/icons-material'
 import ManIcon from '@mui/icons-material/Man'
 import { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './user.css'
 import { publicRequest } from '../../requestMethods'
 
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import app from "../../firebase";
-import { useDispatch } from "react-redux";
-import { updateUser } from '../../redux/apiCalls';
+import { useDispatch, useSelector } from "react-redux";
+import { updateCurrentUser } from '../../redux/apiCalls';
 
 import Swal from 'sweetalert2';
 
-const User = () => {
-    const location = useLocation();
-    const userId = location.pathname.split('/')[2];
-    const [detailUser, setDetailUser] = useState({});
+const Account = () => {
+    const user = useSelector((state) => state.user.currentUser);
+    const userId = user._id;
     const [provinceUser, setProvinceUser] = useState('');
     const [cityUser, setCityUser] = useState('');
     const navigate = useNavigate();
@@ -38,7 +37,6 @@ const User = () => {
         const getUserDetail = async () => {
             try {
                 const resDetailUser = await publicRequest.get(`users/find/${userId}`);
-                setDetailUser(resDetailUser.data);
                 const province = await publicRequest.get(`shipping/provinces/${resDetailUser.data.province}`);
                 setProvinceUser(province.data.rajaongkir.results.province);
                 const city = await publicRequest.get(`shipping/cities/${resDetailUser.data.city}`);
@@ -101,7 +99,7 @@ const User = () => {
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     const user = { ...inputs, img: downloadURL, province: idProvinceFromUser, city: idCityFromUser, _id: userId };
-                    updateUser(dispatch, user);
+                    updateCurrentUser(dispatch, user);
                     navigate("/users", Swal.fire(
                         'Update Profile!',
                         'success'
@@ -122,33 +120,33 @@ const User = () => {
             <div className="userContainer">
                 <div className="userShow">
                     <div className="userShowTop">
-                        <img src={detailUser.img} alt="" className="userShowImg" />
+                        <img src={user.img} alt="" className="userShowImg" />
                         <div className="userShowTopTitle">
-                            <span className="userShowUsername">{detailUser.firstname} {detailUser.lastname}</span>
+                            <span className="userShowUsername">{user.firstname} {user.lastname}</span>
                         </div>
                     </div>
                     <div className="userShowBottom">
                         <span className="userShowTitle">Account Details</span>
                         <div className="userShowInfo">
                             <AdminPanelSettingsRounded className='userShowIcon' />
-                            <span className="userShowInfoTitle">{detailUser.isAdmin ? 'Admin' : 'Customer'}</span>
+                            <span className="userShowInfoTitle">{user.isAdmin ? 'Admin' : 'Customer'}</span>
                         </div>
                         <div className="userShowInfo">
                             <Timelapse className='userShowIcon' />
-                            <span className="userShowInfoTitle">{detailUser.createdAt}</span>
+                            <span className="userShowInfoTitle">{user.createdAt}</span>
                         </div>
                         <div className="userShowInfo">
                             <ManIcon className='userShowIcon' />
-                            <span className="userShowInfoTitle">{detailUser.gender}</span>
+                            <span className="userShowInfoTitle">{user.gender}</span>
                         </div>
                         <span className="userShowTitle">Contact Details</span>
                         <div className="userShowInfo">
                             <PhoneAndroid className='userShowIcon' />
-                            <span className="userShowInfoTitle">{detailUser.phoneNumber}</span>
+                            <span className="userShowInfoTitle">{user.phoneNumber}</span>
                         </div>
                         <div className="userShowInfo">
                             <MailOutline className='userShowIcon' />
-                            <span className="userShowInfoTitle">{detailUser.email}</span>
+                            <span className="userShowInfoTitle">{user.email}</span>
                         </div>
                         <div className="userShowInfo">
                             <LocationOff className='userShowIcon' />
@@ -160,7 +158,7 @@ const User = () => {
                         </div>
                         <div className="userShowInfo">
                             <LocationSearching className='userShowIcon' />
-                            <span className="userShowInfoTitle">{detailUser.address}</span>
+                            <span className="userShowInfoTitle">{user.address}</span>
                         </div>
                     </div>
                 </div>
@@ -225,7 +223,7 @@ const User = () => {
                         </div>
                         <div className="userUpdateRight">
                             <div className="userUpdateUpload">
-                                <img className='userUpdateImage' src={detailUser.img} alt="" />
+                                <img className='userUpdateImage' src={user.img} alt="" />
                                 <label htmlFor='file'><Publish className='userUpdateIcon' /></label>
                                 <input type="file" id="file" style={{ display: "none" }} onChange={e => setFile(e.target.files[0])} />
                             </div>
@@ -238,4 +236,4 @@ const User = () => {
     )
 }
 
-export default User
+export default Account

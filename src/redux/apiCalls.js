@@ -13,7 +13,8 @@ import {
     getUserFailure,
     deleteUserStart,
     deleteUserSuccess,
-    deleteUserFailure
+    deleteUserFailure,
+    updateCurrentUserSuccess
 } from "./userRedux";
 
 import {
@@ -122,11 +123,21 @@ export const deleteUser = async (id, dispatch) => {
     }
 }
 
-export const updateUser = async (id, user, dispatch) => {
+export const updateUser = async (dispatch, user) => {
     dispatch(updateUserStart());
     try {
-        // update
-        dispatch(updateUserSuccess({ id, user }));
+        const res = await publicRequest.put(`/users/${user._id}`, user);
+        dispatch(updateUserSuccess(res.data));
+    } catch (err) {
+        dispatch(updateUserFailure());
+    }
+};
+
+export const updateCurrentUser = async (dispatch, user) => {
+    dispatch(updateUserStart());
+    try {
+        const res = await publicRequest.put(`/users/${user._id}`, user);
+        dispatch(updateCurrentUserSuccess(res.data));
     } catch (err) {
         dispatch(updateUserFailure());
     }

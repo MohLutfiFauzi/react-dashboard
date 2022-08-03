@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -33,17 +32,13 @@ const theme = createTheme();
 
 export default function Login() {
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        setEmail(data.get('email'));
-        setPassword(data.get('password'));
-        login(dispatch, { email, password });
+        login(dispatch, { email: data.get('email'), password: data.get('password') });
         navigate("/dashboard");
     };
 

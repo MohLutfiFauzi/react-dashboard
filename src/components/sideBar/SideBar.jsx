@@ -1,12 +1,37 @@
-import { AttachMoneyOutlined, EqualizerOutlined, LineStyle, PersonOutlineOutlined, StorefrontOutlined, WorkOutlineOutlined } from '@mui/icons-material'
-import { Link } from 'react-router-dom'
+import { AccountCircle, AttachMoneyOutlined, EqualizerOutlined, LineStyle, Logout, PersonOutlineOutlined, StorefrontOutlined, WorkOutlineOutlined } from '@mui/icons-material'
+import { Link, useNavigate } from 'react-router-dom'
 import "./sidebar.css"
 import { useLocation } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { logoutSuccess } from '../../redux/userRedux';
+import Swal from 'sweetalert2'
 
 const SideBar = () => {
     const location = useLocation();
     const { pathname } = location;
     const splitLocation = pathname.split("/");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        Swal.fire({
+            title: 'are you sure you want to leave?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Logout!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Logout Success!',
+                    'success'
+                )
+                dispatch(logoutSuccess());
+                navigate('/');
+            }
+        })
+    }
 
     return (
         <div className='sidebar'>
@@ -50,6 +75,16 @@ const SideBar = () => {
                                 Stock
                             </li>
                         </Link>
+                        <Link to="/account" className='link' >
+                            <li className={splitLocation[1] === "account" ? "sidebarListItem active" : "sidebarListItem"}>
+                                <AccountCircle className='sidebarIcon' />
+                                Account
+                            </li>
+                        </Link>
+                        <li className={"sidebarListItem"} onClick={handleLogout}>
+                            <Logout className='sidebarIcon' />
+                            Logout
+                        </li>
                     </ul>
                 </div>
             </div>

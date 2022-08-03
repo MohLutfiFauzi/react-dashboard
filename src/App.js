@@ -18,6 +18,7 @@ import EditInsertStock from "./pages/insertStock/EditInsertStock";
 import AddInsertStock from "./pages/insertStock/AddInsertStock";
 import AddTransactions from "./pages/transactions/AddTransactions";
 import Login from "./pages/login/Login";
+import Account from "./pages/account/Account";
 
 const Layout = () => (
   <>
@@ -49,6 +50,7 @@ function App() {
           <Route path="/insertStock" element={<InsertStock />} />
           <Route path="/insertStock/:insertStockId" element={<EditInsertStock />} />
           <Route path="/newStock" element={<AddInsertStock />} />
+          <Route path="/account" element={<Account />} />
         </Route>
       </Routes>
     </Router >
