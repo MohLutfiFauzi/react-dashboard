@@ -71,11 +71,11 @@ export const deleteOrder = async (id, dispatch) => {
     }
 }
 
-export const updateOrder = async (id, order, dispatch) => {
+export const updateOrder = async (dispatch, order) => {
     dispatch(updateOrderStart());
     try {
-        // update
-        dispatch(updateOrderSuccess({ id, order }));
+        const res = await publicRequest.put(`/orders/${order._id}`, order);
+        dispatch(updateOrderSuccess(res.data));
     } catch (err) {
         dispatch(updateOrderFailure());
     }

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { publicRequest } from '../../requestMethods'
 import styled from 'styled-components'
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteOutlined } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getOrders, deleteOrder } from '../../redux/apiCalls';
 import Swal from 'sweetalert2'
 
@@ -11,18 +12,6 @@ const Container = styled.div`
     flex: 4;
     height: 480px;
 `
-
-const StyleButtonAdd = {
-    border: "none",
-    borderRadius: "10px",
-    padding: "5px 20px",
-    backgroundColor: "rgb(55, 0, 255)",
-    color: "white",
-    cursor: "pointer",
-    fontSize: "large",
-    marginTop: "20px",
-    marginBottom: "20px",
-}
 
 const StyleDeleteButton = {
     color: "rgb(243, 59, 59)",
@@ -39,9 +28,24 @@ const StyleEditButton = {
     marginRight: "10px",
 }
 
-const TransactionsList = () => {
-    const orders = useSelector((state) => state.order.orders);
+const ListOrderUser = () => {
     const dispatch = useDispatch();
+
+    const location = useLocation();
+    const userId = location.pathname.split("/")[2];
+    const [userOrders, setUserOrders] = useState({});
+
+    useEffect(() => {
+        const getUserOrders = async () => {
+            try {
+                const resOrderUser = await publicRequest.get(`orders/find/${userId}`);
+                setUserOrders(resOrderUser.data);
+            } catch (e) {
+                console.log(e.message);
+            }
+        }
+        getUserOrders();
+    }, [userId]);
 
     useEffect(() => {
         dispatch(getOrders);
@@ -67,11 +71,11 @@ const TransactionsList = () => {
 
     const columns = [
         { field: '_id', headerName: 'ID', width: 200 },
-        { field: 'userId', headerName: 'User Id', width: 200, },
+        { field: 'userId', headerName: 'User ID', width: 200 },
         { field: 'amount', headerName: 'Amount', width: 100, },
         { field: 'address', headerName: 'Address', width: 160 },
         { field: 'status', headerName: 'Status', width: 100 },
-        { field: 'createdAt', headerName: 'Date', width: 160, },
+        { field: 'createdAt', headerName: 'Date', width: 150, },
         {
             field: 'action',
             headerName: 'Action',
@@ -79,8 +83,8 @@ const TransactionsList = () => {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/listorderuser/" + params.row.userId}>
-                            <button style={StyleEditButton}>see</button>
+                        <Link to={"/transaction/" + params.row._id}>
+                            <button style={StyleEditButton}>Edit</button>
                         </Link>
                         <DeleteOutlined style={StyleDeleteButton} onClick={() => handleDelete(params.row._id)} />
                     </>
@@ -90,8 +94,9 @@ const TransactionsList = () => {
     ];
     return (
         <Container>
+            <h2 style={{ marginBottom: '10px' }}>List User Order</h2>
             <DataGrid
-                rows={orders}
+                rows={userOrders}
                 columns={columns}
                 pageSize={10}
                 getRowId={row => row._id}
@@ -99,11 +104,8 @@ const TransactionsList = () => {
                 checkboxSelection
                 disableSelectionOnClick
             />
-            <Link to={"/newTransaction/"} className="userAddContainer">
-                <button style={StyleButtonAdd}>Add Transaction</button>
-            </Link>
         </Container>
     )
 }
 
-export default TransactionsList
+export default ListOrderUser

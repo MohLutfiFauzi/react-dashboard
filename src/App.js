@@ -17,6 +17,7 @@ import EditTransactions from "./pages/transactions/EditTransactions";
 import EditInsertStock from "./pages/insertStock/EditInsertStock";
 import AddInsertStock from "./pages/insertStock/AddInsertStock";
 import AddTransactions from "./pages/transactions/AddTransactions";
+import ListOrderUser from "./pages/transactions/ListOrderUser";
 import Login from "./pages/login/Login";
 import Account from "./pages/account/Account";
 
@@ -51,6 +52,7 @@ function App() {
           <Route path="/insertStock/:insertStockId" element={<EditInsertStock />} />
           <Route path="/newStock" element={<AddInsertStock />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/listorderuser/:userId" element={<ListOrderUser />} />
         </Route>
       </Routes>
     </Router >

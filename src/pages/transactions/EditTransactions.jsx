@@ -1,6 +1,12 @@
-import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { publicRequest } from '../../requestMethods'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { updateOrder } from '../../redux/apiCalls'
+import { useDispatch } from 'react-redux'
+import Swal from 'sweetalert2';
 
 const Container = styled.div`
     flex: 4;
@@ -50,11 +56,6 @@ const Input = styled.input`
     width: 200px;
 `
 
-const Select = styled.select`
-    width: 200px;
-    margin-bottom: 10px;
-`
-
 const TextArea = styled.textarea`
     margin-bottom: 10px;
     border: none;
@@ -80,10 +81,47 @@ const StyleBackButton = {
     color: "white",
     borderRadius: "5px",
     fontSize: "16px",
-    cursor: "pointer"
+    cursor: "pointer",
 }
 
 const EditTransactions = () => {
+
+    const location = useLocation();
+    const orderId = location.pathname.split("/")[2];
+    const [orders, setOrders] = useState({});
+
+    const [inputs, setInputs] = useState({});
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleInput = (e) => {
+        setInputs(prev => {
+            return { ...prev, [e.target.name]: e.target.value }
+        })
+    }
+
+    useEffect(() => {
+        const getUserOrders = async () => {
+            try {
+                const resOrderUser = await publicRequest.get(`orders/${orderId}`);
+                setOrders(resOrderUser.data[0]);
+            } catch (e) {
+                console.log(e.message);
+            }
+        }
+        getUserOrders();
+    }, [orderId]);
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        const order = { ...inputs, _id: orderId };
+        updateOrder(dispatch, order);
+        navigate("/transactionslist", Swal.fire(
+            'Update Orders!',
+            'success'
+        ));
+    }
+
     return (
         <Container>
             <TitleContainer>
@@ -95,33 +133,25 @@ const EditTransactions = () => {
             <ContainerFormEdit>
                 <FormEdit>
                     <FormLeft>
-                        <Label>ID Transaction</Label>
-                        <Input placeholder='Id Transaction' disabled={true} />
+                        <Label>ID</Label>
+                        <Input placeholder={orders._id} disabled={true} />
                         <Label>ID Customer</Label>
-                        <Input placeholder='Id Customer' disabled={true} />
-                        <Label>Phone Number</Label>
-                        <Input placeholder='Phone Number' disabled={true} />
-                        <Label>Buyer</Label>
-                        <Input placeholder='Buyer' disabled={true} />
+                        <Input placeholder={orders.userId} disabled={true} />
+                        <Label>Amount</Label>
+                        <Input name='amount' placeholder={orders.amount} onChange={handleInput} />
+                        <Label>Status</Label>
+                        <Input name='status' placeholder={orders.status} onChange={handleInput} />
                         <Label>Date</Label>
-                        <Input placeholder='14-03-2022' disabled={true} />
+                        <Input placeholder={orders.createdAt} disabled={true} />
                     </FormLeft>
                     <FormRight>
-                        <Label>Product</Label>
-                        <TextArea placeholder='aglonema, amazon'></TextArea>
-                        <Label>Status</Label>
-                        <Select name="status" id="status">
-                            <option value="panding">Panding</option>
-                            <option value="panding">Aproved</option>
-                            <option value="panding">Diclined</option>
-                        </Select>
-                        <Label>Amount</Label>
-                        <Input placeholder='Amount' type="number" />
-                        <Label>Count</Label>
-                        <Input placeholder='Count' type="number" />
-                        <Label>Size</Label>
-                        <TextArea placeholder='aglonema: small, amazon: medium'></TextArea>
-                        <Button className="productButton">Update</Button>
+                        <Label>Address</Label>
+                        <TextArea name='address' placeholder={orders.address} onChange={handleInput}></TextArea>
+                        {/* <Label>Products</Label>
+                        <TextArea placeholder={orders.products.map((item) => {
+                            return `${item.productId} : ${item.quantity} `
+                        })}></TextArea> */}
+                        <Button onClick={handleClick} className="productButton">Update</Button>
                     </FormRight>
                 </FormEdit>
             </ContainerFormEdit>
